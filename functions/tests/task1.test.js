@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const multiply = require('../tasks/task1');
+const {multiply} = require('../tasks/task1');
 
 describe('Test task 1', () => {
 

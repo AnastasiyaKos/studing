@@ -4,7 +4,7 @@ multiply(1, 2, 3) = 6
 Еслли нет ни одного аргумента, вернуть ноль: multiply() = 0
 */
 
-module.exports = function multiply() {
+exports.multiply = function multiply() {
     if ( arguments.length === 0) {
        return 0;
     }

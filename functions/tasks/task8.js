@@ -3,15 +3,14 @@
 Создайте страницу, которая запрашивает x и n, а затем выводит результат pow(x,n).
 P.S. В этой задаче функция обязана поддерживать только натуральные значения n, т.е. целые от 1 и выше.
  */
-
+const _ = require('lodash');
 function pow(x, n) {
-    // let x = prompt('Введите значение x'),
-    //     n = prompt('Введите значение n');
-    if (!x) return new Error ('Не передано значение x');
-    if (!n) return new Error ('Не передано значение n');
+    if (!x || !n) throw new Error('Не передано значение x или n');
+    if ( !(n >= 1 && _.isInteger(n))) {
+        throw new Error('n - не натуральное')
+    }
     return x ** n;
 }
-    // if (n <= 1) {
-    // alert('n должно быть не меньше 1');
-}
-console.log(pow(2, 5));
+
+pow();
+//console.log(pow(2));
