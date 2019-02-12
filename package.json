@@ -1,0 +1,11 @@
+{
+  "name": "studing",
+  "version": "1.0.0",
+  "dependencies": {
+    "chai": "latest",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha tests/*test.js"
+  }
+}

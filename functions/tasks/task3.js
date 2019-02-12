@@ -12,5 +12,3 @@ function getCodeStringFromText(str) {
     }
     return res;
 }
-
-console.log(getCodeStringFromText('hello'))

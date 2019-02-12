@@ -8,5 +8,3 @@ function factorial(x) {
     }
     return x * factorial(x-1);
 }
-
-console.log(factorial(10))
