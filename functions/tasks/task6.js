@@ -18,12 +18,6 @@ console.log(checkAge(16))
 */
 
 function checkAge(age) {
-    return (age > 18) ? true : confirm('Родители разрешили?');
+    return (age > 18);
     }
-}
 
-
-function checkAgeTwo(youAge) {
-    if (youAge > 18) return true || confirm('Родители разрешили?');
-    }
-}
