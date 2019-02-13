@@ -4,7 +4,7 @@
 P.S. В этой задаче функция обязана поддерживать только натуральные значения n, т.е. целые от 1 и выше.
  */
 const _ = require('lodash');
-function pow(x, n) {
+exports.pow = function pow(x, n) {
     if (!x || !n) throw new Error('Не передано значение x или n');
     if ( !(n >= 1 && _.isInteger(n))) {
         throw new Error('n - не натуральное')
@@ -12,5 +12,4 @@ function pow(x, n) {
     return x ** n;
 }
 
-pow();
 //console.log(pow(2));

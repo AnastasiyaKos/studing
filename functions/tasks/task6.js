@@ -17,7 +17,4 @@ console.log(checkAge(16))
 Используя оператор ||
 */
 
-function checkAge(age) {
-    return (age > 18);
-    }
-
+exports.checkAge = (aqe) => aqe >= 18;

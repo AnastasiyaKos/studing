@@ -2,7 +2,7 @@
 возвращает строку-перевертыш:
 reverseString('test')="tset"
 */
-function reverseString(string) {
+exports.reverseString = function reverseString(string) {
    let result = '';
    for (let i = 1; i <= string.length; i++) {
       result += string[string.length - i];
@@ -10,4 +10,4 @@ function reverseString(string) {
 
       return result;
 }
-console.log(reverseString('kotik'));
+// console.log(reverseString('kotik'));

@@ -11,83 +11,83 @@
 6. firstFunc([1, 2, 3], function(namber) {return number + 5 + ''}) - New value: 6, 7, 8
  */
 
-function handleArray(arr, handler) {
+exports.handleArray = function handleArray(arr, handler) {
     return `New value: ${handler(arr)}`
 }
 
-const result = handleArray(['my', 'name'], (arr)=>{
-    let result = '';
+// const result = handleArray(['my', 'name'], (arr)=>{
+//     let result = '';
+//
+//     arr.forEach(elem => {
+//         result += elem[0].toUpperCase() + elem.slice(1);
+//     });
+//     return result;
+// });
 
-    arr.forEach(elem => {
-        result += elem[0].toUpperCase() + elem.slice(1);
-    });
-    return result;
-});
+// console.log(result);
 
-console.log(result);
+// const resultTwo = handleArray([10, 20, 30], (arr)=>{
+//     let resultTwo = '';
+//
+//     arr.forEach( (elem, index, arr) => {
+//         if (index === arr.length - 1) {
+//             resultTwo += elem * 10 + ' ';
+//         } else {
+//             resultTwo += elem * 10 + ', ';
+//         }
+//
+//     });
+//     return resultTwo;
+// });
 
-const resultTwo = handleArray([10, 20, 30], (arr)=>{
-    let resultTwo = '';
+// console.log(resultTwo);
 
-    arr.forEach( (elem, index, arr) => {
-        if (index === arr.length - 1) {
-            resultTwo += elem * 10 + ' ';
-        } else {
-            resultTwo += elem * 10 + ', ';
-        }
+// const resThree = handleArray ([{
+//     age: 45,
+//     name: 'Jhon'}, {
+//     age: 20,
+//     name: 'Aron'
+// }], (arr) => {
+//
+//     let resThree = '';
+//
+//     arr.forEach( (item, index, arr) => {
+//         if (index === arr.length - 1) {
+//             resThree += item.name + ' is ' + item.age;
+//         } else {
+//             resThree += item.name + ' is ' + item.age + ', ';
+//         }
+//     });
+//     return resThree;
+// });
+//
+// // console.log(resThree);
+//
+// const resFour = handleArray (['abc', '123'], (arr) => {
+//     let resFour = '';
+//
+//     arr.forEach(elem => {
+//         for (let i = 1; i <= elem.length; i++) {
+//             resFour += elem[elem.length - i];
+//         }
+//     });
+//     return resFour;
+// });
+//
+// // console.log(resFour);
+//
+//
+// const resFive = handleArray ([1, 2, 3], (arr)=> {
+//     let resFive = '';
+//
+//     arr.forEach((elem, index, arr) => {
+//         if (index === arr.length - 1) {
+//             resFive += elem + 5 + ' ';
+//         } else {
+//             resFive += elem + 5 + ', ';
+//         }
+//     });
+//     return resFive;
+// });
 
-    });
-    return resultTwo;
-});
-
-console.log(resultTwo);
-
-const resThree = handleArray ([{
-    age: 45,
-    name: 'Jhon'}, {
-    age: 20,
-    name: 'Aron'
-}], (arr) => {
-
-    let resThree = '';
-
-    arr.forEach( (item, index, arr) => {
-        if (index === arr.length - 1) {
-            resThree += item.name + ' is ' + item.age;
-        } else {
-            resThree += item.name + ' is ' + item.age + ', ';
-        }
-    });
-    return resThree;
-});
-
-console.log(resThree);
-
-const resFour = handleArray (['abc', '123'], (arr) => {
-    let resFour = '';
-
-    arr.forEach(elem => {
-        for (let i = 1; i <= elem.length; i++) {
-            resFour += elem[elem.length - i];
-        }
-    });
-    return resFour;
-});
-
-console.log(resFour);
-
-
-const resFive = handleArray ([1, 2, 3], (arr)=> {
-    let resFive = '';
-
-    arr.forEach((elem, index, arr) => {
-        if (index === arr.length - 1) {
-            resFive += elem + 5 + ' ';
-        } else {
-            resFive += elem + 5 + ', ';
-        }
-    });
-    return resFive;
-});
-
-console.log(resFive);
+// console.log(resFive);

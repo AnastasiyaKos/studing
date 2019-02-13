@@ -4,11 +4,15 @@
 getCodeFromText('hello') = "104 101 108 108 111"
  */
 
-function getCodeStringFromText(str) {
+exports.getCodeStringFromText = function getCodeStringFromText(str) {
     let res = '';
 
     for ( let i = 0; i < str.length; i++) {
-        res += str.charCodeAt(i) + ' ';
+        if (i < str.length - 1) {
+            res += str.charCodeAt(i) + ' ';
+        } else {
+            res += str.charCodeAt(i);
+        }
     }
     return res;
-}
+};

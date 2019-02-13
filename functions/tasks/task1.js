@@ -15,6 +15,6 @@ exports.multiply = function multiply() {
     }
     return result;
 
-}
+};
 
 
