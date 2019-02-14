@@ -13,7 +13,7 @@
 
 exports.handleArray = function handleArray(arr, handler) {
     return `New value: ${handler(arr)}`
-}
+};
 
 // const result = handleArray(['my', 'name'], (arr)=>{
 //     let result = '';
@@ -24,7 +24,7 @@ exports.handleArray = function handleArray(arr, handler) {
 //     return result;
 // });
 
-// console.log(result);
+
 
 // const resultTwo = handleArray([10, 20, 30], (arr)=>{
 //     let resultTwo = '';
@@ -40,7 +40,6 @@ exports.handleArray = function handleArray(arr, handler) {
 //     return resultTwo;
 // });
 
-// console.log(resultTwo);
 
 // const resThree = handleArray ([{
 //     age: 45,
@@ -60,9 +59,8 @@ exports.handleArray = function handleArray(arr, handler) {
 //     });
 //     return resThree;
 // });
-//
-// // console.log(resThree);
-//
+
+
 // const resFour = handleArray (['abc', '123'], (arr) => {
 //     let resFour = '';
 //
@@ -73,10 +71,8 @@ exports.handleArray = function handleArray(arr, handler) {
 //     });
 //     return resFour;
 // });
-//
-// // console.log(resFour);
-//
-//
+
+
 // const resFive = handleArray ([1, 2, 3], (arr)=> {
 //     let resFive = '';
 //
@@ -89,5 +85,3 @@ exports.handleArray = function handleArray(arr, handler) {
 //     });
 //     return resFive;
 // });
-
-// console.log(resFive);

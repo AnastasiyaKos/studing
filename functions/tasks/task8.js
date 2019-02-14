@@ -10,6 +10,4 @@ exports.pow = function pow(x, n) {
         throw new Error('n - не натуральное')
     }
     return x ** n;
-}
-
-//console.log(pow(2));
+};

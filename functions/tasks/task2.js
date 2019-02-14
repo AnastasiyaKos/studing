@@ -9,5 +9,4 @@ exports.reverseString = function reverseString(string) {
    }
 
       return result;
-}
-// console.log(reverseString('kotik'));
+};
