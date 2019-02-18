@@ -1,9 +1,11 @@
-function sort(string) {
+/*Дана произвольная срока 'bcdaeflmjgkhi' - упорядочить буквы
+по алфавиту и веуть строку с буквами в обратном порядке.
+Оформить в виде функции.
+ */
 
-    // for ( let i = 0; i < string.length - 1; i-- ) {
-    //     newStr += string.sort();
-    // }
-    return string.sort('adcbi');
+exports.sort = function sort(string) {
+    let str = '';
+    return str += string.split('').sort().reverse().join('');
 }
 
-sort();
+//console.log(sort('bcdaeflmjgkhi'))
