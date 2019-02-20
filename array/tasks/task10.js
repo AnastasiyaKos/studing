@@ -3,7 +3,7 @@
 ['I', 'am', 'an', 'array'] - ['I', 'am', 'an', 'awesome', 'array'] 
  */
 
-function insert (array, elem) {
+exports.insert = (array, elem) => {
     let newArr = [];
     for (let i = 0; i < array.length; i++) {
         if (i === 2) {
@@ -14,5 +14,5 @@ function insert (array, elem) {
         }
     }
     return newArr;
-}
-console.log(insert(['I', 'am', 'an', 'array'], 'awesome'))
+};
+
