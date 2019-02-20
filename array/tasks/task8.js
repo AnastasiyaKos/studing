@@ -3,6 +3,6 @@
 ['one', 2, 'three', 4]
  */
 
-function doubleArr(array) {
+exports.doubleArr = (array) => {
     return array.concat(array)
-}
+};

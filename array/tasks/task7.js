@@ -6,9 +6,7 @@
 getNewArray(['a', 'b', 'c', 'd', 'e', 'f'], 2, 4) = ['c', 'd', 'e']
 Исходный массив не менять. Циклы не использовать.
  */
-//exports.
-    function getNewArray() {
-     let array = ['a', 'b', 'c', 'd', 'e', 'f'];
-    return array.slice(2, 5);
+exports.getNewArray = (array, from, to) => {
+    return array.slice(from, ++to);
 };
-console.log(getNewArray());
+// console.log(getNewArray());
