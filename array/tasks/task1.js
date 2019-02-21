@@ -4,8 +4,7 @@
  */
 
 exports.sort = function sort(string) {
-    let str = '';
-    return str += string.split('').sort().reverse().join('');
+    return string.split('').sort().reverse().join('');
 }
 
 //console.log(sort('bcdaeflmjgkhi'))
