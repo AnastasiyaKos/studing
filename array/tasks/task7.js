@@ -9,4 +9,3 @@ getNewArray(['a', 'b', 'c', 'd', 'e', 'f'], 2, 4) = ['c', 'd', 'e']
 exports.getNewArray = (array, from, to) => {
     return array.slice(from, ++to);
 };
-// console.log(getNewArray());
