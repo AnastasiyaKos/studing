@@ -5,11 +5,12 @@
  */
 
 
- exports.sortArray = (previous, next) => {
-     if (previous.length < next.length) return 1;
-     if (previous.length > next.length) return -1;
+exports.sortArray = (previous, next) => {
+
+     if (previous.length > next.length) return 1;
+     if (previous.length < next.length) return -1;
 };
 
-//console.log(sortArray([[14,15], [1], ['a', 'c', 'd']]))
+//console.log([[14,15], [1], ['a', 'c', 'd']].sort(sortArray));
 
 
