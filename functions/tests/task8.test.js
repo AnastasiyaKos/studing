@@ -16,4 +16,10 @@ describe('#TASK8 Возести X в степерь N', () => {
         assert.equal(pow(3, 3), 27);
         done();
     });
+
+    it ('Should be exception', (done) => {
+        assert.throws(() => pow(), 'Не передано значение x или n')
+        assert.throws( () => pow(1, 2.5), 'n - не натуральное') ;
+        done();
+    });
 });
