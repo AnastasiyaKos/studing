@@ -2,7 +2,7 @@
 Следующая функция возвращает true, если параметр age больше 18.
 В ином случае она задаёт вопрос confirm и возвращает его результат.
 
-function checkAge(age) {
+function_closing checkAge(age) {
   if (age > 18) {
     return true;
   } else {

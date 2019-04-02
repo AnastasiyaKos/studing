@@ -8,7 +8,7 @@
 3. firstFunc([{age: 45, name: 'Jhon'}, {age: 20, name: 'Aron}], secondFunc) -
    "New value: Jhon is 45, Aron is 20"
 5. firstFunc(['abc', '123'], secondFunc) - "New value: cba, 321"
-6. firstFunc([1, 2, 3], function(namber) {return number + 5 + ''}) - New value: 6, 7, 8
+6. firstFunc([1, 2, 3], function_closing(namber) {return number + 5 + ''}) - New value: 6, 7, 8
  */
 
 exports.handleArray = function handleArray(arr, handler) {
