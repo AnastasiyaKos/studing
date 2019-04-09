@@ -20,6 +20,6 @@ let calculator = {
    }
 };
 
-calculator.read();
+// calculator.read();
 alert( calculator.sum() );
 alert( calculator.mul() );
