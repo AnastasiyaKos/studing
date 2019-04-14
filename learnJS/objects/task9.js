@@ -4,18 +4,31 @@ function User(fullName) {
     this.fullName = fullName;
 
 
-Object.defineProperties(user, {
-    get fullName() {
-        return this.firstName + this.lastName;
+Object.defineProperties(this, {
+    firstName: {
+
+        get: function () {
+            return this.fullName.split(' ')[0];
+        },
+
+        set: function (newFirstName) {
+            this.fullName = newFirstName + ' ' + this.lastName;
+        }
+
     },
 
-    set fullName(value) {
-        const split = value.split('');
-        this.firstName = split[0];
-        this.lastName = split[1];
+    lastName: {
+        get: function () {
+            return this.fullName.split(' ')[1];
+        },
+
+        set: function (newLastName) {
+            this.fullName = this.firstName + ' ' + newLastName;
+        }
     }
 
-})};
+});
+};
 
 let vasya = new User ('Vasiliy Popkin');
 
