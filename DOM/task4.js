@@ -45,4 +45,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //console.log(mark);
 
+    let li = document.querySelectorAll('li');
+    let text = [];
+
+    for (let i = 0; i < li.length; i++) {
+        text.push(li[i].textContent);
+
+    }
+
+    function sortLi (prev, next) {
+        if (prev > next) return -1;
+        if (prev < next) return 1;
+    }
+
+
+    text.sort(sortLi);
+
+    for (let k = 0; k < li.length; k++) {
+        li[k].textContent = text[k];
+    }
+
+    console.log(li)
  });
