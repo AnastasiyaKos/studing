@@ -1,28 +1,61 @@
-let tasks = [
-    "Выучить JS",
-    "Выучить Angular 4",
-    "Сходить на работу"
-];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
 let inputText = form.elements['todoText'];
+let btnClearList = document.getElementById('clearList');
+let notificationAlert = document.querySelector('.notification-alert');
+
+//модель задачи
+// let models = {
+//     id: '',
+//     text: ''
+// };
+
+
+
+function generateId() {
+    let id ='';
+    let words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+
+    for (let i = 0; i < 15; i++) {
+        let position = Math.floor(Math.random() * words.length);
+        id += words[position];
+    }
+
+    return id;
+}
+
+
 
 function listTemplate(task) {
     //Create list item
     let li = document.createElement('li');
-    li.textContent = task;
     li.className = 'list-group-item d-flex align-items-center';
+    li.setAttribute('data-id', task.id);
+
+    //записываем тескт в span, чтобы ожно было редактировать
+    let span = document.createElement('span');
+    span.textContent = task.text;
 
     //Create tag i fa-trash-alt
     let iDelete = document.createElement('i');
-    iDelete.className = 'fas fa-trash-alt delete-item ml-auto';
+    iDelete.className = 'fas fa-trash-alt delete-item ml-4';
+    //Create tag i fa-edit (редактирование задачи)
+    let iEdit = document.createElement('i');
+    iEdit.className = 'fas fa-edit edit-item ml-auto';
 
-    //Append delete icon to li
+    //Append delete end edit icon to li
+    li.appendChild(span);
+    li.appendChild(iEdit);
     li.appendChild(iDelete);
 
     return li;
 }
 
+btnClearList.addEventListener('click', function (e) {
+    ul.innerHTML = ''
+});
 function clearList() {
     ul.innerHTML = '';
 }
@@ -31,7 +64,7 @@ function generateList(tasksArray) {
 
     clearList();
 
-    for ( let i = 0; i < tasksArray.length; i++ ) {
+    for (let i = 0; i < tasksArray.length; i++) {
         let li = listTemplate(tasksArray[i]);
         ul.appendChild(li);
     }
@@ -41,10 +74,17 @@ function generateList(tasksArray) {
 }
 
 function addList(list) {
-    tasks.unshift(list);
+    let newTask = {
+        id: generateId(),
+        text: list
+    };
+
+    tasks.unshift(newTask);
     //generateList(tasks);
-    ul.insertAdjacentElement('afterbegin', listTemplate(list));
-};
+    ul.insertAdjacentElement('afterbegin', listTemplate(newTask));
+    //Add to local storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 //функция которая заново добавляет сщбытия через цикл
 // function setDeleteEvent() {
@@ -55,26 +95,77 @@ function addList(list) {
 //     }
 // }
 
-function deleteListItem (target) {
-    //Delete list item
-    // 1. найти родителя
-    // 2. удалили родителя
-    // 3. splice, index, indexOf, text
-    let parent = target.closest('li'); //нашли родителя
-    let text = parent.textContent; //забрали у него текст
-    let index = tasks.indexOf(text); //находим индекс нужного текста
+function deleteListItem(id) {
+    for (let i = 0; i < tasks.length; i++) {
+        if ( tasks[i].id === id ) {
+            tasks.splice(i, 1);
+            break;
+        }
+    }
 
-    //можем сократить
-    //let parent = e.target.closest('li');
-    //let index = tasks.indexOf(parent.textContent);
+    // Update to local storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    tasks.splice(index, 1);
-    parent.remove(); //удаляем найденную li
+    message({
+        text: 'Task delete success',
+        cssClass: 'alert-warning',
+        timeout: 4000
+    })
+}
+
+function editListItem (id, newValue) {
+    for (let i = 0; i < tasks.length; i++) {
+        if ( tasks[i].id === id ) {
+            tasks[i].text = newValue;
+            break;
+        }
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    message({
+        text: 'Task update success',
+        cssClass: 'alert-success',
+        timeout: 4000
+    })
+}
+
+function message (settings) {
+    notificationAlert.classList.add(settings.cssClass);
+    notificationAlert.textContent = settings.text;
+    notificationAlert.classList.add('show');
+
+    setTimeout(function () {
+        notificationAlert.classList.remove('show');
+    }, settings.timeout);
+
 }
 
 ul.addEventListener('click', function (e) {
-    if ( e.target.classList.contains('delete-item') ) {
-        deleteListItem(e.target);
+    if (e.target.classList.contains('delete-item')) {
+        let parent = e.target.closest('li');
+        let id = parent.dataset.id;
+        deleteListItem(id);
+        parent.remove(); //удаляем найденную li
+
+
+    } else if (e.target.classList.contains('edit-item')) {
+        //toggle добавляет класс при его отсутствии или удаляет если присутствует
+        e.target.classList.toggle('fa-save');
+        let id = e.target.closest('li').dataset.id;
+
+        // closest ищет брижайшего родителя
+        let span = e.target.closest('li').querySelector('span');
+
+        if (e.target.classList.contains('fa-save')) {
+            // устанавливаем атрибут, позволяющий редактировать
+            span.setAttribute('contenteditable', true);
+            span.focus();
+
+        } else {
+            span.setAttribute('contenteditable', false);
+            span.blur();
+            editListItem(id, span.textContent);
+        }
     }
 });
 
@@ -82,9 +173,10 @@ ul.addEventListener('click', function (e) {
 //событие отправки формы
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if ( !inputText.value ) {
+    //inputText.classList.remove('alert-success');
+    if (!inputText.value) {
         //show error
-        inputText.classList.add('is-invalid')
+        inputText.classList.add('is-invalid');
     } else {
         inputText.classList.remove('is-invalid');
         addList(inputText.value);
@@ -99,8 +191,10 @@ form.addEventListener('submit', function (e) {
     //ul.insertAdjacentElement('afterbegin', listTemplate(inputText.value));
 });
 
-inputText.addEventListener('change', function (e) {
-    console.log(this.value)
+inputText.addEventListener('keyup', function (e) {
+    if (inputText.value) {
+        inputText.classList.remove('is-invalid');
+    }
 });
 
 
@@ -125,6 +219,3 @@ generateList(tasks);
 //
 //
 // console.dir(btn);
-
-
-
