@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const {sort} = require('../tasks/task1');
 
-describe('#ARRAY TASK1 String sorting', () => {
+describe('#ARRAY TASK1 MyString sorting', () => {
     it ('Should be: mlkjihgfedcba', (done) => {
         assert.equal(sort('bcdaeflmjgkhi'), 'mlkjihgfedcba')
         done();

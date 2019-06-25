@@ -11,9 +11,7 @@ class Cars {
     }
 
     getYear() {
-        let nowDate = new Date();
-        let nowYear = nowDate.getFullYear();
-
+        const nowYear = new Date().getFullYear();
         return nowYear - this.year;
     }
 }
