@@ -18,7 +18,7 @@ class VideoPlayer {
 
     events() {
         // All events
-        //this.video.addEventListener('click',  this.togglePlay.bind(this))
+        //this.example.addEventListener('click',  this.togglePlay.bind(this))
         // при клике по видео оно играет/становится на паузу
         this.video.addEventListener('click',  e => this.togglePlay(e));
         // при клике на иконку ПЛЭЙ/ПАУЗА видео играет/становится на паузу
@@ -35,7 +35,7 @@ class VideoPlayer {
     }
 
     togglePlay(e) {
-        // Play/pause video
+        // Play/pause example
         // если видео на паузе, то при нажатии на него должно идти и наоборот
         const method = this.video.paused ? 'play' : 'pause';
         this.toggle.textContent = this.video.paused ? '||' : '||';
@@ -45,8 +45,8 @@ class VideoPlayer {
     handleRangeUpdate(e) {
         //console.log(e.target);
         // работа ползунков громкости / скорости
-        // this.video['volume'] = e.target.value;
-        // this.video['playBackRate'] = e.target.value;
+        // this.example['volume'] = e.target.value;
+        // this.example['playBackRate'] = e.target.value;
         this.video[e.target.name] = e.target.value;
     }
 
