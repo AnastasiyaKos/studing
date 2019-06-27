@@ -13,6 +13,18 @@ let notificationAlert = document.querySelector('.notification-alert');
 // };
 
 
+ajax.send({
+    method: 'GET',
+    url: 'https://jsonplaceholder.typicode.com/todos',
+    success: function (res) {
+        let response = JSON.parse(res);
+        
+    },
+    error: function (err) {
+        console.log(err);
+    }
+});
+
 
 function generateId() {
     let id ='';
