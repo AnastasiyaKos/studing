@@ -1,21 +1,20 @@
-function Building(name, numberFloor) {
-    this.name = name;
+class Building {
+    constructor(numberFloor) {
+        this.numberFloor = numberFloor;
+    }
 
-    this.setNumberFloor = function (amount) {
-        numberFloor = amount;
-    };
-
-    this.getNumberFloor = function () {
-        return numberFloor;
+    getNumberFloor() {
+        return this.numberFloor;
     }
 }
 
-function LivingHome(numberFloor, numberOfFlatsPerFloor) {
-    Building.apply(this, arguments);
-    this.numberOfFlatsPerFloor = numberOfFlatsPerFloor;
-    this.numberFloor = numberFloor;
+class livingHome extends Building{
+    constructor(numberFloor, numberOfFlatsPerFloor) {
+        super(numberFloor);
+        this.numberOfFlatsPerFloor = numberOfFlatsPerFloor;
+    }
 
-    this.getNumberFloor = function () {
+     getNumberFloor() {
         return {
             numberFloor: this.numberFloor,
             totalFlat: this.numberFloor * this.numberOfFlatsPerFloor
@@ -23,12 +22,13 @@ function LivingHome(numberFloor, numberOfFlatsPerFloor) {
     }
 }
 
-function Mall(numberFloor, numberOfStoresPerFloor) {
-    Building.apply(this, arguments);
-    this.numberFloor = numberFloor;
-    this.numberOfStoresPerFloor = numberOfStoresPerFloor;
+class Mall extends Building {
+    constructor(numberFloor, numberOfStoresPerFloor) {
+        super(numberFloor);
+        this.numberOfStoresPerFloor = numberOfStoresPerFloor;
+    }
 
-    this.getNumberFloor = function () {
+    getNumberFloor() {
         return {
             numberFloor: this.numberFloor,
             totalStores: this.numberFloor * this.numberOfStoresPerFloor
@@ -37,7 +37,7 @@ function Mall(numberFloor, numberOfStoresPerFloor) {
 }
 
 
-const home13 = new LivingHome(5, 2);
+const home13 = new livingHome(13, 8);
 console.log(home13.getNumberFloor());
 
 const dana = new Mall(3, 20);
