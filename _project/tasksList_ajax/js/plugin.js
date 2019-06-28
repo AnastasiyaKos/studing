@@ -1,5 +1,16 @@
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
+ajax.send({
+    method: 'GET',
+    url: 'https://jsonplaceholder.typicode.com/todos',
+    success: function (res) {
+         tasks = JSON.parse(res);
+        generateList(tasks);
+        console.log(tasks);
+    },
+    error: function (err) {
+        console.log(err);
+    }
+});
 
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
@@ -36,8 +47,10 @@ function listTemplate(task) {
 
     //записываем тескт в span, чтобы ожно было редактировать
     let span = document.createElement('span');
-    span.textContent = task.text;
-
+    span.textContent = task.title;
+    if (!task.completed) {
+        span.className = 'bg-success'
+    }
 
     //Create tag i fa-trash-alt
     let iDelete = document.createElement('i');
@@ -77,7 +90,7 @@ function generateList(tasksArray) {
 function addList(list) {
     let newTask = {
         id: generateId(),
-        text: list
+        title: list
     };
 
     tasks.unshift(newTask);
@@ -198,7 +211,7 @@ inputText.addEventListener('keyup', function (e) {
     }
 });
 
-generateList();
+
 
 
 //КНОПКА Clear list
