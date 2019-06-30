@@ -1,11 +1,12 @@
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
 let inputText = form.elements['todoText'];
 let btnClearList = document.getElementById('clearList');
 let notificationAlert = document.querySelector('.notification-alert');
+
+generateList(tasks);
 
 //модель задачи
 // let models = {
@@ -64,7 +65,7 @@ function clearList() {
 function generateList(tasksArray) {
 
     clearList();
-
+    console.log(tasksArray);
     for (let i = 0; i < tasksArray.length; i++) {
         let li = listTemplate(tasksArray[i]);
         ul.appendChild(li);
@@ -198,7 +199,7 @@ inputText.addEventListener('keyup', function (e) {
     }
 });
 
-generateList();
+
 
 
 //КНОПКА Clear list

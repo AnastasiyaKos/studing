@@ -1,16 +1,20 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = [];
+
 ajax.send({
     method: 'GET',
-    url: 'https://jsonplaceholder.typicode.com/todos',
-    success: function (res) {
-         tasks = JSON.parse(res);
+     url: 'https://jsonplaceholder.typicode.com/todos',
+     timeout: 3000,
+     success: function (res) {
+        tasks = JSON.parse(res);
         generateList(tasks);
-        console.log(tasks);
-    },
-    error: function (err) {
+     },
+     error: function (err){
         console.log(err);
     }
 });
+
+
+
 
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
@@ -23,6 +27,7 @@ let notificationAlert = document.querySelector('.notification-alert');
 //     id: '',
 //     text: ''
 // };
+
 
 
 function generateId() {
@@ -45,13 +50,13 @@ function listTemplate(task) {
     li.className = 'list-group-item d-flex align-items-center';
     li.setAttribute('data-id', task.id);
 
+    if(task.completed) {
+        li.classList.add('bg-success');
+    }
+
     //записываем тескт в span, чтобы ожно было редактировать
     let span = document.createElement('span');
     span.textContent = task.title;
-    if (!task.completed) {
-        span.className = 'bg-success'
-    }
-
     //Create tag i fa-trash-alt
     let iDelete = document.createElement('i');
     iDelete.className = 'fas fa-trash-alt delete-item ml-4';
@@ -110,37 +115,54 @@ function addList(list) {
 // }
 
 function deleteListItem(id) {
-    for (let i = 0; i < tasks.length; i++) {
-        if ( tasks[i].id === id ) {
-            tasks.splice(i, 1);
-            break;
+    ajax.send({
+        method: 'DELETE',
+        url: `https://jsonplaceholder.typicode.com/todos/${id}`,
+        timeout: 3000,
+        success: function (tasks) {
+            for (let i = 0; i < tasks.length; i++) {
+                if ( tasks[i].id === id ) {
+                    tasks.splice(i, 1);
+                    break;
+                }
+            }
+
+            message({
+                text: 'Task delete success',
+                cssClass: 'alert-warning',
+                timeout: 4000
+            })
+        },
+        error: function (err){
+            console.log(err);
         }
-    }
-
-    // Update to local storage
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-
-    message({
-        text: 'Task delete success',
-        cssClass: 'alert-warning',
-        timeout: 4000
-    })
+    });
 }
 
 function editListItem (id, newValue) {
-    for (let i = 0; i < tasks.length; i++) {
-        if ( tasks[i].id === id ) {
-            tasks[i].text = newValue;
-            break;
-        }
-    }
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    ajax.send({
+        method: 'PUT',
+        url: `https://jsonplaceholder.typicode.com/todos/${id}`,
+        timeout: 3000,
+        success: function (tasks) {
+            for (let i = 0; i < tasks.length; i++) {
+                if ( tasks[i].id === id ) {
+                    tasks[i].text = newValue;
+                    break;
+                }
+            }
 
-    message({
-        text: 'Task update success',
-        cssClass: 'alert-success',
-        timeout: 4000
-    })
+            message({
+                text: 'Task update success',
+                cssClass: 'alert-success',
+                timeout: 4000
+            })
+        },
+        error: function (err){
+            console.log(err);
+        }
+    });
+
 }
 
 function message (settings) {
