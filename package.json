@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "chai": "latest",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mocha": "^5.2.0"
   },
   "scripts": {
